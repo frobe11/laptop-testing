@@ -1,0 +1,1 @@
+hcitool dev | tail -n2
