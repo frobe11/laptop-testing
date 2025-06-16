@@ -1,0 +1,1 @@
+sudo apt install stress-ng python3.12 lm-sensors fswebcam sox libsox-fmt-all alsa-utils -y
