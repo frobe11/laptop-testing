@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/bash cat /home/ubuntu/laptop-testing/artifacts/test-result
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=show test results
+Comment=вывод результатов теста в консольку

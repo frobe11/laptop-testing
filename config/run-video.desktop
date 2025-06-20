@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=vlc --intf dummy --loop /home/ubuntu/laptop-testing/artifacts/video.mp4
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=run video
+Comment=Запуск видео в цикле, чтобы Кирилл смотрел и кайфовал

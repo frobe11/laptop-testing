@@ -9,16 +9,16 @@ LOGFILE="/tmp/cpu_temp.log"
 # Очистка лога
 > "$LOGFILE"
 
-
+CORE_COUNT=$(nproc)
 # Запуск нагрузки в фоне
-stress-ng --cpu $(nproc) --timeout ${DURATION}s 2>/dev/null &
+stress-ng --cpu $CORE_COUNT --timeout ${DURATION}s >/dev/null &
 
 # Получаем PID процесса stress-ng
 STRESS_PID=$!
 
 # Мониторим температуру пока работает stress-ng
 while kill -0 $STRESS_PID 2>/dev/null; do
-    sensors | grep -i "core" | awk '{sum += $3} END {print sum/1}' | tr -d '+°C' # TEMP=$(sensors | grep -i "Tctl" | awk '{sum += $2} END {print sum/1}' | tr -d '+°C')
+    TEMP=$(sensors | grep -i "Tctl" | awk '{sum += $2} END {print sum/1}' | tr -d '+°C') # TEMP=$(sensors | grep -i "Сore" | awk '{sum += $3} END {print sum/1}' | tr -d '+°C') 
     # Если валидно распарсили температуры - записываем в лог
     if [[ $TEMP =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
         echo "$TEMP" >> "$LOGFILE"
@@ -35,12 +35,13 @@ while read -r line; do
     if [[ $TEMP -gt $MAX_TEMP ]]; then
         MAX_TEMP=$TEMP
     fi
-    TOTAL_TEMP=$(echo "$TOTAL_TEMP + $TEMP" | bc)
+    TOTAL_TEMP=$(echo "$TOTAL_TEMP + $TEMP" | bc -l)
     COUNT=$((COUNT + 1))
 done < "$LOGFILE"
 
 AVERAGE_TEMP=$(echo "$TOTAL_TEMP / $COUNT" | bc -l)
-
+AVERAGE_TEMP=$(echo "$TOTAL_TEMP / $CORE_COUNT" | bc -l)
+MAX_TEMP=$(echo "$MAX_TEMP / $CORE_COUNT" | bc -l)
 # Вывод результата (запишивать в общий лог. подумать над оформлением )
 echo "----------------------------------------"
 echo "Средняя температура CPU за $DURATION секунд: $AVERAGE_TEMP°C"

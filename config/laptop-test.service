@@ -1,0 +1,12 @@
+[Unit]
+Description=Service that run test and 
+After=multi-user.target
+
+[Service]
+ExecStart=/bin/bash /home/ubuntu/laptop-testing/scripts/service.sh
+User=ubuntu
+WorkingDirectory=/home/ubuntu
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

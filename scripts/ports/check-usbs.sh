@@ -1,6 +1,3 @@
-red()    { echo -e "\e[31m$*\e[0m"; }
-green()  { echo -e "\e[32m$*\e[0m"; }
-
 USB_PORTS=3
 USB_COUNT=$(lsblk -S | tail -n+2 | wc -l)
 
