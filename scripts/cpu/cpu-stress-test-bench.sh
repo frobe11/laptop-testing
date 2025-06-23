@@ -18,7 +18,7 @@ STRESS_PID=$!
 
 # Мониторим температуру пока работает stress-ng
 while kill -0 $STRESS_PID 2>/dev/null; do
-    TEMP=$(sensors | grep -i "Сore" | awk '{sum += $3} END {print sum/1}' | tr -d '+°C') # TEMP=$(sensors | grep -i "Tctl" | awk '{sum += $2} END {print sum/1}' | tr -d '+°C') 
+    TEMP=$(sensors | grep -i "Core" | awk '{sum += $3} END {print sum/1}' | tr -d '+°C') # TEMP=$(sensors | grep -i "Tctl" | awk '{sum += $2} END {print sum/1}' | tr -d '+°C') 
     # Если валидно распарсили температуры - записываем в лог
     if [[ $TEMP =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
         echo "$TEMP" >> "$LOGFILE"
