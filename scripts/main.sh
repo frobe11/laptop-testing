@@ -6,3 +6,5 @@ bash $SCRIPT_DIR/wifi/wifi-test.sh "$SCRIPT_DIR"
 bash $SCRIPT_DIR/camera/camera-test.sh "$SCRIPT_DIR" 
 bash $SCRIPT_DIR/bluetooth/bluetooth-test.sh "$SCRIPT_DIR" 
 bash $SCRIPT_DIR/cpu/cpu-stress-test-bench.sh "$SCRIPT_DIR"
+
+vlc --intf dummy --loop /home/ubuntu/laptop-testing/artifacts/video.mp4 # запуск видео после завершения теста

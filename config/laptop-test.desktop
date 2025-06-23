@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=gnome-terminal --maximize --tab --title="тестирование ноутбука" -- bash -c "/home/ubuntu/laptop-testing/scripts/main.sh"
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=show test results
+Comment=запуск теста при входе в GUI
