@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Время теста в секундах
-DURATION=60
+DURATION=$1
 
 # Имя файла для логов температур
 LOGFILE="/tmp/cpu_temp.log"
